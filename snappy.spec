@@ -4,12 +4,12 @@
 #
 Name     : snappy
 Version  : 1.1.3
-Release  : 4
+Release  : 5
 URL      : https://github.com/google/snappy/archive/1.1.3.tar.gz
 Source0  : https://github.com/google/snappy/archive/1.1.3.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : BSD-3-Clause
+License  : BSD-3-Clause BSD-3-Clause-Clear
 Requires: snappy-lib
 Requires: snappy-doc
 BuildRequires : gtest-dev
@@ -30,6 +30,7 @@ for most inputs, but the resulting compressed files are anywhere from 20% to
 Summary: dev components for the snappy package.
 Group: Development
 Requires: snappy-lib
+Provides: snappy-devel
 
 %description dev
 dev components for the snappy package.
@@ -55,6 +56,13 @@ lib components for the snappy package.
 %setup -q -n snappy-1.1.3
 
 %build
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -flto -falign-functions=32 -fno-semantic-interposition -O3 "
+export FCFLAGS="$CFLAGS -flto -falign-functions=32 -fno-semantic-interposition -O3 "
+export FFLAGS="$CFLAGS -flto -falign-functions=32 -fno-semantic-interposition -O3 "
+export CXXFLAGS="$CXXFLAGS -flto -falign-functions=32 -fno-semantic-interposition -O3 "
 %autogen --disable-static
 make V=1  %{?_smp_mflags}
 
