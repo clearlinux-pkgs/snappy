@@ -4,7 +4,7 @@
 #
 Name     : snappy
 Version  : 1.1.3
-Release  : 6
+Release  : 7
 URL      : https://github.com/google/snappy/archive/1.1.3.tar.gz
 Source0  : https://github.com/google/snappy/archive/1.1.3.tar.gz
 Summary  : No detailed summary available
