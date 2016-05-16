@@ -4,7 +4,7 @@
 #
 Name     : snappy
 Version  : 1.1.3
-Release  : 8
+Release  : 9
 URL      : https://github.com/google/snappy/archive/1.1.3.tar.gz
 Source0  : https://github.com/google/snappy/archive/1.1.3.tar.gz
 Summary  : No detailed summary available
@@ -12,7 +12,7 @@ Group    : Development/Tools
 License  : BSD-3-Clause BSD-3-Clause-Clear
 Requires: snappy-lib
 Requires: snappy-doc
-BuildRequires : gtest-dev
+BuildRequires : googletest-dev
 BuildRequires : lzo-dev
 BuildRequires : zlib-dev
 
@@ -60,10 +60,10 @@ lib components for the snappy package.
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -falign-functions=32 -fno-semantic-interposition -flto -O3 "
-export FCFLAGS="$CFLAGS -falign-functions=32 -fno-semantic-interposition -flto -O3 "
-export FFLAGS="$CFLAGS -falign-functions=32 -fno-semantic-interposition -flto -O3 "
-export CXXFLAGS="$CXXFLAGS -falign-functions=32 -fno-semantic-interposition -flto -O3 "
+export CFLAGS="$CFLAGS -fno-semantic-interposition -O3 -falign-functions=32 -flto "
+export FCFLAGS="$CFLAGS -fno-semantic-interposition -O3 -falign-functions=32 -flto "
+export FFLAGS="$CFLAGS -fno-semantic-interposition -O3 -falign-functions=32 -flto "
+export CXXFLAGS="$CXXFLAGS -fno-semantic-interposition -O3 -falign-functions=32 -flto "
 %autogen --disable-static
 make V=1  %{?_smp_mflags}
 
