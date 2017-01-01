@@ -4,7 +4,7 @@
 #
 Name     : snappy
 Version  : 1.1.3
-Release  : 9
+Release  : 10
 URL      : https://github.com/google/snappy/archive/1.1.3.tar.gz
 Source0  : https://github.com/google/snappy/archive/1.1.3.tar.gz
 Summary  : No detailed summary available
@@ -14,7 +14,6 @@ Requires: snappy-lib
 Requires: snappy-doc
 BuildRequires : googletest-dev
 BuildRequires : lzo-dev
-BuildRequires : zlib-dev
 
 %description
 Snappy, a fast compressor/decompressor.
@@ -57,17 +56,20 @@ lib components for the snappy package.
 %setup -q -n snappy-1.1.3
 
 %build
+export LANG=C
+export SOURCE_DATE_EPOCH=1483308147
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -fno-semantic-interposition -O3 -falign-functions=32 -flto "
-export FCFLAGS="$CFLAGS -fno-semantic-interposition -O3 -falign-functions=32 -flto "
-export FFLAGS="$CFLAGS -fno-semantic-interposition -O3 -falign-functions=32 -flto "
-export CXXFLAGS="$CXXFLAGS -fno-semantic-interposition -O3 -falign-functions=32 -flto "
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto -fno-semantic-interposition "
+export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto -fno-semantic-interposition "
+export FFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto -fno-semantic-interposition "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto -fno-semantic-interposition "
 %autogen --disable-static
 make V=1  %{?_smp_mflags}
 
 %check
+export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost
@@ -83,7 +85,7 @@ rm -rf %{buildroot}
 %files dev
 %defattr(-,root,root,-)
 /usr/include/*.h
-/usr/lib64/*.so
+/usr/lib64/libsnappy.so
 
 %files doc
 %defattr(-,root,root,-)
@@ -91,4 +93,5 @@ rm -rf %{buildroot}
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/*.so.*
+/usr/lib64/libsnappy.so.1
+/usr/lib64/libsnappy.so.1.3.0
