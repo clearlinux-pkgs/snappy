@@ -4,7 +4,7 @@
 #
 Name     : snappy
 Version  : 1.1.3
-Release  : 10
+Release  : 11
 URL      : https://github.com/google/snappy/archive/1.1.3.tar.gz
 Source0  : https://github.com/google/snappy/archive/1.1.3.tar.gz
 Summary  : No detailed summary available
@@ -57,14 +57,10 @@ lib components for the snappy package.
 
 %build
 export LANG=C
-export SOURCE_DATE_EPOCH=1483308147
-export AR=gcc-ar
-export RANLIB=gcc-ranlib
-export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto -fno-semantic-interposition "
-export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto -fno-semantic-interposition "
-export FFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto -fno-semantic-interposition "
-export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto -fno-semantic-interposition "
+export SOURCE_DATE_EPOCH=1483368213
+export CFLAGS="-O2 -g -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=32 -Wformat -Wformat-security -Wno-error -Wl,-z -Wl,now -Wl,-z -Wl,relro -Wl,-z,max-page-size=0x1000 -m64 -march=westmere -mtune=haswell"
+export CXXFLAGS=$CFLAGS
+unset LDFLAGS
 %autogen --disable-static
 make V=1  %{?_smp_mflags}
 

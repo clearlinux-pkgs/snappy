@@ -11,7 +11,6 @@ libsnappy.so.1:_ZN6snappy15ByteArraySourceD2Ev
 libsnappy.so.1:_ZN6snappy17IsValidCompressedEPNS_6SourceE
 libsnappy.so.1:_ZN6snappy18SnappyDecompressor9RefillTagEv
 libsnappy.so.1:_ZN6snappy19MaxCompressedLengthEm
-libsnappy.so.1:_ZN6snappy19SnappySinkAllocator7DeleterEPvPKcm
 libsnappy.so.1:_ZN6snappy20RawUncompressToIOVecEPKcmPKNS_5iovecEm
 libsnappy.so.1:_ZN6snappy20RawUncompressToIOVecEPNS_6SourceEPKNS_5iovecEm
 libsnappy.so.1:_ZN6snappy21GetUncompressedLengthEPKcmPm
