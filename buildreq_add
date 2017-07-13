@@ -2,3 +2,4 @@
 # picked up automatically. One name per line, no whitespace.
 googletest-dev
 lzo-dev
+gflags-dev

@@ -1,0 +1,5 @@
+Configure miss: sys/byteswap.h usability
+Configure miss: sys/byteswap.h presence
+Configure miss: sys/byteswap.h
+Configure miss: 'gtest-config'... checking for gtest-config
+Configure miss: libgflags
