@@ -4,7 +4,7 @@
 #
 Name     : snappy
 Version  : 1.1.6
-Release  : 15
+Release  : 16
 URL      : https://github.com/google/snappy/archive/1.1.6.tar.gz
 Source0  : https://github.com/google/snappy/archive/1.1.6.tar.gz
 Summary  : A fast compression/decompression library
