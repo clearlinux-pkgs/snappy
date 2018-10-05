@@ -1,0 +1,26 @@
+From cb03d1985f420581b18405851ba5da5a8ee11220 Mon Sep 17 00:00:00 2001
+From: Patrick McCarty <patrick.mccarty@intel.com>
+Date: Fri, 5 Oct 2018 01:11:30 -0700
+Subject: [PATCH] Also link unittest binary to libgtest
+
+Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
+---
+ CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 3f534b1..fb36485 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -118,7 +118,7 @@ if(SNAPPY_BUILD_TESTS)
+       "${PROJECT_SOURCE_DIR}/snappy-test.cc"
+   )
+   target_compile_definitions(snappy_unittest PRIVATE -DHAVE_CONFIG_H)
+-  target_link_libraries(snappy_unittest snappy ${GFLAGS_LIBRARIES})
++  target_link_libraries(snappy_unittest snappy ${GFLAGS_LIBRARIES} ${GTEST_LIBRARIES})
+ 
+   if(HAVE_LIBZ)
+     target_link_libraries(snappy_unittest z)
+-- 
+2.19.0
+
