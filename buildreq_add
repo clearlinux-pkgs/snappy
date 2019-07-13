@@ -3,3 +3,4 @@
 googletest-dev
 lzo-dev
 gflags-dev
+zlib-dev
