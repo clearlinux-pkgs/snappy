@@ -8,6 +8,7 @@ libsnappy.so.1:_ZN6snappy15ByteArraySource4SkipEm
 libsnappy.so.1:_ZN6snappy15ByteArraySourceD0Ev
 libsnappy.so.1:_ZN6snappy15ByteArraySourceD1Ev
 libsnappy.so.1:_ZN6snappy15ByteArraySourceD2Ev
+libsnappy.so.1:_ZN6snappy16AdvanceToNextTagEPPKhPm
 libsnappy.so.1:_ZN6snappy17IsValidCompressedEPNS_6SourceE
 libsnappy.so.1:_ZN6snappy18SnappyDecompressor9RefillTagEv
 libsnappy.so.1:_ZN6snappy19MaxCompressedLengthEm
@@ -35,6 +36,10 @@ libsnappy.so.1:_ZN6snappy6SourceD0Ev
 libsnappy.so.1:_ZN6snappy6SourceD1Ev
 libsnappy.so.1:_ZN6snappy6SourceD2Ev
 libsnappy.so.1:_ZN6snappy6Varint8Append32EPNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEj
+libsnappy.so.1:_ZN6snappy7MemCopyEPcPKhm
+libsnappy.so.1:_ZN6snappy7MemCopyElPKhm
+libsnappy.so.1:_ZN6snappy7MemMoveEPcPKvm
+libsnappy.so.1:_ZN6snappy7MemMoveElPKvm
 libsnappy.so.1:_ZN6snappy8CompressEPKcmPNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
 libsnappy.so.1:_ZN6snappy8CompressEPNS_6SourceEPNS_4SinkE
 libsnappy.so.1:_ZN6snappy8internal13WorkingMemoryC1Em

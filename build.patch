@@ -1,0 +1,11 @@
+--- snappy-1.1.9/snappy-stubs-internal.h~	2021-05-04 22:53:34.000000000 +0000
++++ snappy-1.1.9/snappy-stubs-internal.h	2021-09-23 15:00:39.501056741 +0000
+@@ -100,7 +100,7 @@
+ 
+ // Inlining hints.
+ #ifdef HAVE_ATTRIBUTE_ALWAYS_INLINE
+-#define SNAPPY_ATTRIBUTE_ALWAYS_INLINE __attribute__((always_inline))
++#define SNAPPY_ATTRIBUTE_ALWAYS_INLINE
+ #else
+ #define SNAPPY_ATTRIBUTE_ALWAYS_INLINE
+ #endif
