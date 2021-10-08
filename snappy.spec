@@ -4,12 +4,13 @@
 #
 Name     : snappy
 Version  : 1.1.9
-Release  : 24
+Release  : 25
 URL      : https://github.com/google/snappy/archive/1.1.9/snappy-1.1.9.tar.gz
 Source0  : https://github.com/google/snappy/archive/1.1.9/snappy-1.1.9.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause BSD-3-Clause-Clear
+Requires: snappy-filemap = %{version}-%{release}
 Requires: snappy-lib = %{version}-%{release}
 Requires: snappy-license = %{version}-%{release}
 BuildRequires : buildreq-cmake
@@ -35,10 +36,19 @@ Requires: snappy = %{version}-%{release}
 dev components for the snappy package.
 
 
+%package filemap
+Summary: filemap components for the snappy package.
+Group: Default
+
+%description filemap
+filemap components for the snappy package.
+
+
 %package lib
 Summary: lib components for the snappy package.
 Group: Libraries
 Requires: snappy-license = %{version}-%{release}
+Requires: snappy-filemap = %{version}-%{release}
 
 %description lib
 lib components for the snappy package.
@@ -62,7 +72,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1633709126
+export SOURCE_DATE_EPOCH=1633709315
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -113,12 +123,13 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1633709126
+export SOURCE_DATE_EPOCH=1633709315
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/snappy
 cp %{_builddir}/snappy-1.1.9/COPYING %{buildroot}/usr/share/package-licenses/snappy/c3af063092a3cd8c31335607ba466fe91898bd4e
 pushd clr-build-avx2
 %make_install_v3  || :
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/clear/optimized-elf/ %{buildroot}/usr/clear/filemap/filemap-%{name}
 popd
 pushd clr-build
 %make_install
@@ -139,8 +150,13 @@ popd
 /usr/lib64/cmake/Snappy/SnappyTargets.cmake
 /usr/lib64/libsnappy.so
 
+%files filemap
+%defattr(-,root,root,-)
+/usr/clear/filemap/filemap-snappy
+
 %files lib
 %defattr(-,root,root,-)
+/usr/clear/optimized-elf/lib*
 /usr/lib64/libsnappy.so.1
 /usr/lib64/libsnappy.so.1.1.9
 
