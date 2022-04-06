@@ -1,0 +1,26 @@
+From 59c42a0bd210aa16b02e3059dd125d0d2f6cee11 Mon Sep 17 00:00:00 2001
+From: Arjan van de Ven <arjan@linux.intel.com>
+Date: Wed, 6 Apr 2022 09:58:42 -0700
+Subject: [PATCH 1/2] build patch
+
+Signed-off-by: Ganesh Maharaj Mahalingam <ganesh.mahalingam@intel.com>
+---
+ snappy-stubs-internal.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/snappy-stubs-internal.h b/snappy-stubs-internal.h
+index c2a838f..d53d164 100644
+--- a/snappy-stubs-internal.h
++++ b/snappy-stubs-internal.h
+@@ -100,7 +100,7 @@
+ 
+ // Inlining hints.
+ #ifdef HAVE_ATTRIBUTE_ALWAYS_INLINE
+-#define SNAPPY_ATTRIBUTE_ALWAYS_INLINE __attribute__((always_inline))
++#define SNAPPY_ATTRIBUTE_ALWAYS_INLINE
+ #else
+ #define SNAPPY_ATTRIBUTE_ALWAYS_INLINE
+ #endif
+-- 
+2.35.1
+

@@ -4,7 +4,7 @@
 #
 Name     : snappy
 Version  : 1.1.9
-Release  : 29
+Release  : 30
 URL      : https://github.com/google/snappy/archive/1.1.9/snappy-1.1.9.tar.gz
 Source0  : https://github.com/google/snappy/archive/1.1.9/snappy-1.1.9.tar.gz
 Summary  : No detailed summary available
@@ -18,7 +18,8 @@ BuildRequires : gflags-dev
 BuildRequires : googletest-dev
 BuildRequires : lzo-dev
 BuildRequires : zlib-dev
-Patch1: build.patch
+Patch1: 0001-build-patch.patch
+Patch2: 0002-add-option-to-enable-rtti-set-default-to-current-beh.patch
 
 %description
 Snappy, a fast compressor/decompressor.
@@ -66,13 +67,14 @@ license components for the snappy package.
 %setup -q -n snappy-1.1.9
 cd %{_builddir}/snappy-1.1.9
 %patch1 -p1
+%patch2 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1634669807
+export SOURCE_DATE_EPOCH=1649264656
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -92,7 +94,8 @@ export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
 -DBUILD_SHARED_LIBS=yes \
 -DSNAPPY_REQUIRE_AVX2=yes \
 -DSNAPPY_BUILD_TESTS=no \
--DSNAPPY_BUILD_BENCHMARKS=no
+-DSNAPPY_BUILD_BENCHMARKS=no \
+-DSNAPPY_ENABLE_RTTI=ON
 make  %{?_smp_mflags}
 popd
 mkdir -p clr-build-avx2
@@ -118,12 +121,13 @@ export FCFLAGS="$FCFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
 -DBUILD_SHARED_LIBS=yes \
 -DSNAPPY_REQUIRE_AVX2=yes \
 -DSNAPPY_BUILD_TESTS=no \
--DSNAPPY_BUILD_BENCHMARKS=no
+-DSNAPPY_BUILD_BENCHMARKS=no \
+-DSNAPPY_ENABLE_RTTI=ON
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1634669807
+export SOURCE_DATE_EPOCH=1649264656
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/snappy
 cp %{_builddir}/snappy-1.1.9/COPYING %{buildroot}/usr/share/package-licenses/snappy/c3af063092a3cd8c31335607ba466fe91898bd4e
