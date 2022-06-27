@@ -4,13 +4,12 @@
 #
 Name     : snappy
 Version  : 1.1.9
-Release  : 30
+Release  : 31
 URL      : https://github.com/google/snappy/archive/1.1.9/snappy-1.1.9.tar.gz
 Source0  : https://github.com/google/snappy/archive/1.1.9/snappy-1.1.9.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause BSD-3-Clause-Clear
-Requires: snappy-filemap = %{version}-%{release}
 Requires: snappy-lib = %{version}-%{release}
 Requires: snappy-license = %{version}-%{release}
 BuildRequires : buildreq-cmake
@@ -37,19 +36,10 @@ Requires: snappy = %{version}-%{release}
 dev components for the snappy package.
 
 
-%package filemap
-Summary: filemap components for the snappy package.
-Group: Default
-
-%description filemap
-filemap components for the snappy package.
-
-
 %package lib
 Summary: lib components for the snappy package.
 Group: Libraries
 Requires: snappy-license = %{version}-%{release}
-Requires: snappy-filemap = %{version}-%{release}
 
 %description lib
 lib components for the snappy package.
@@ -74,7 +64,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1649264656
+export SOURCE_DATE_EPOCH=1656361293
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -109,10 +99,10 @@ unset LDFLAGS
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Wl,-z,x86-64-v3 -ffat-lto-objects -flto=auto -march=x86-64-v3 -mtune=skylake "
-export FCFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -ffat-lto-objects -flto=auto -march=x86-64-v3 -mtune=skylake "
-export FFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -ffat-lto-objects -flto=auto -march=x86-64-v3 -mtune=skylake "
-export CXXFLAGS="$CXXFLAGS -O3 -Wl,-z,x86-64-v3 -ffat-lto-objects -flto=auto -march=x86-64-v3 -mtune=skylake "
+export CFLAGS="$CFLAGS -O3 -Wl,-z,x86-64-v3 -ffat-lto-objects -flto=auto -march=x86-64-v3 -msse2avx -mtune=skylake "
+export FCFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -ffat-lto-objects -flto=auto -march=x86-64-v3 -msse2avx -mtune=skylake "
+export FFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -ffat-lto-objects -flto=auto -march=x86-64-v3 -msse2avx -mtune=skylake "
+export CXXFLAGS="$CXXFLAGS -O3 -Wl,-z,x86-64-v3 -ffat-lto-objects -flto=auto -march=x86-64-v3 -msse2avx -mtune=skylake "
 export CFLAGS="$CFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
 export CXXFLAGS="$CXXFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
 export FFLAGS="$FFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
@@ -127,7 +117,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1649264656
+export SOURCE_DATE_EPOCH=1656361293
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/snappy
 cp %{_builddir}/snappy-1.1.9/COPYING %{buildroot}/usr/share/package-licenses/snappy/c3af063092a3cd8c31335607ba466fe91898bd4e
@@ -137,7 +127,7 @@ popd
 pushd clr-build
 %make_install
 popd
-/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
@@ -152,17 +142,15 @@ popd
 /usr/lib64/cmake/Snappy/SnappyConfigVersion.cmake
 /usr/lib64/cmake/Snappy/SnappyTargets-relwithdebinfo.cmake
 /usr/lib64/cmake/Snappy/SnappyTargets.cmake
+/usr/lib64/glibc-hwcaps/x86-64-v3/libsnappy.so
 /usr/lib64/libsnappy.so
-
-%files filemap
-%defattr(-,root,root,-)
-/usr/share/clear/filemap/filemap-snappy
 
 %files lib
 %defattr(-,root,root,-)
+/usr/lib64/glibc-hwcaps/x86-64-v3/libsnappy.so.1
+/usr/lib64/glibc-hwcaps/x86-64-v3/libsnappy.so.1.1.9
 /usr/lib64/libsnappy.so.1
 /usr/lib64/libsnappy.so.1.1.9
-/usr/share/clear/optimized-elf/lib*
 
 %files license
 %defattr(0644,root,root,0755)
