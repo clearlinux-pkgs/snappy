@@ -4,7 +4,7 @@
 #
 Name     : snappy
 Version  : 1.1.9
-Release  : 31
+Release  : 32
 URL      : https://github.com/google/snappy/archive/1.1.9/snappy-1.1.9.tar.gz
 Source0  : https://github.com/google/snappy/archive/1.1.9/snappy-1.1.9.tar.gz
 Summary  : No detailed summary available
