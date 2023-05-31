@@ -5,7 +5,7 @@
 #
 Name     : snappy
 Version  : 1.1.10
-Release  : 39
+Release  : 40
 URL      : https://github.com/google/snappy/archive/1.1.10/snappy-1.1.10.tar.gz
 Source0  : https://github.com/google/snappy/archive/1.1.10/snappy-1.1.10.tar.gz
 Summary  : No detailed summary available
@@ -65,7 +65,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1683233326
+export SOURCE_DATE_EPOCH=1685504807
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -118,7 +118,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1683233326
+export SOURCE_DATE_EPOCH=1685504807
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/snappy
 cp %{_builddir}/snappy-%{version}/COPYING %{buildroot}/usr/share/package-licenses/snappy/c3af063092a3cd8c31335607ba466fe91898bd4e || :
@@ -135,7 +135,6 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
-/V3/usr/lib64/libsnappy.so
 /usr/include/snappy-c.h
 /usr/include/snappy-sinksource.h
 /usr/include/snappy-stubs-public.h
@@ -148,7 +147,6 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libsnappy.so.1
 /V3/usr/lib64/libsnappy.so.1.1.10
 /usr/lib64/libsnappy.so.1
 /usr/lib64/libsnappy.so.1.1.10
